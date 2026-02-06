@@ -93,8 +93,8 @@ export default function AdminProductsPage() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-stone-900">Products</h1>
-          <p className="mt-1 text-stone-500">Manage your product catalog</p>
+          <h1 className="text-3xl font-bold text-navy-950">Products</h1>
+          <p className="mt-1 text-navy-500">Manage your product catalog</p>
         </div>
         <Button onClick={() => handleOpen()} className="gap-2">
           <Plus className="h-4 w-4" />
@@ -117,26 +117,26 @@ export default function AdminProductsPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-stone-200">
-                    <th className="text-left py-3 px-4 font-medium text-stone-500">ID</th>
-                    <th className="text-left py-3 px-4 font-medium text-stone-500">Name</th>
-                    <th className="text-left py-3 px-4 font-medium text-stone-500">Category</th>
-                    <th className="text-left py-3 px-4 font-medium text-stone-500">Price</th>
-                    <th className="text-left py-3 px-4 font-medium text-stone-500">Stock</th>
-                    <th className="text-right py-3 px-4 font-medium text-stone-500">Actions</th>
+                  <tr className="border-b border-navy-100">
+                    <th className="text-left py-3 px-4 font-medium text-navy-500">ID</th>
+                    <th className="text-left py-3 px-4 font-medium text-navy-500">Name</th>
+                    <th className="text-left py-3 px-4 font-medium text-navy-500">Category</th>
+                    <th className="text-left py-3 px-4 font-medium text-navy-500">Price</th>
+                    <th className="text-left py-3 px-4 font-medium text-navy-500">Stock</th>
+                    <th className="text-right py-3 px-4 font-medium text-navy-500">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {products?.map((product) => (
-                    <tr key={product.id} className="border-b border-stone-200 hover:bg-amber-50">
-                      <td className="py-3 px-4 text-stone-600">{product.id}</td>
-                      <td className="py-3 px-4 font-medium text-stone-900">{product.name}</td>
+                    <tr key={product.id} className="border-b border-navy-100 hover:bg-primary-50">
+                      <td className="py-3 px-4 text-navy-600">{product.id}</td>
+                      <td className="py-3 px-4 font-medium text-navy-950">{product.name}</td>
                       <td className="py-3 px-4">
                         <Badge variant="secondary">{product.category}</Badge>
                       </td>
-                      <td className="py-3 px-4 text-stone-900">{formatPrice(product.price)}</td>
+                      <td className="py-3 px-4 text-navy-950">{formatPrice(product.price)}</td>
                       <td className="py-3 px-4">
-                        <span className={product.stockQuantity <= 5 ? 'text-red-600 font-medium' : 'text-stone-600'}>
+                        <span className={product.stockQuantity <= 5 ? 'text-red-600 font-medium' : 'text-navy-600'}>
                           {product.stockQuantity}
                         </span>
                       </td>
@@ -175,16 +175,16 @@ export default function AdminProductsPage() {
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1">Name</label>
+            <label className="block text-sm font-medium text-navy-700 mb-1">Name</label>
             <Input name="name" value={formData.name} onChange={handleChange} required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1">Description</label>
+            <label className="block text-sm font-medium text-navy-700 mb-1">Description</label>
             <Textarea name="description" value={formData.description} onChange={handleChange} required />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-stone-700 mb-1">Price</label>
+              <label className="block text-sm font-medium text-navy-700 mb-1">Price</label>
               <Input
                 name="price"
                 type="number"
@@ -196,7 +196,7 @@ export default function AdminProductsPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-stone-700 mb-1">Stock</label>
+              <label className="block text-sm font-medium text-navy-700 mb-1">Stock</label>
               <Input
                 name="stockQuantity"
                 type="number"
@@ -208,11 +208,11 @@ export default function AdminProductsPage() {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1">Category</label>
+            <label className="block text-sm font-medium text-navy-700 mb-1">Category</label>
             <Input name="category" value={formData.category} onChange={handleChange} required />
           </div>
           <div>
-            <label className="block text-sm font-medium text-stone-700 mb-1">Image URL</label>
+            <label className="block text-sm font-medium text-navy-700 mb-1">Image URL</label>
             <Input name="imageUrl" value={formData.imageUrl} onChange={handleChange} />
           </div>
           <div className="flex justify-end gap-3 pt-4">

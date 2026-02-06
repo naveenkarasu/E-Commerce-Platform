@@ -51,6 +51,7 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        surface: 'hsl(var(--surface))',
         navy: {
           50: '#eff6ff',
           100: '#dbeafe',

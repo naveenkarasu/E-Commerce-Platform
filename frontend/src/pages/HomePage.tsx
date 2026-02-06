@@ -36,7 +36,7 @@ export default function HomePage() {
       </section>
 
       {/* Features */}
-      <section className="border-b border-stone-200 bg-amber-50/50">
+      <section className="border-b border-navy-100 bg-primary-50/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
           <CategoryShowcase />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -45,8 +45,8 @@ export default function HomePage() {
                 <Truck className="h-6 w-6 text-primary-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-stone-900">Free Shipping</h3>
-                <p className="text-sm text-stone-500">On all orders over $50</p>
+                <h3 className="font-semibold text-navy-950">Free Shipping</h3>
+                <p className="text-sm text-navy-500">On all orders over $50</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -54,8 +54,8 @@ export default function HomePage() {
                 <Shield className="h-6 w-6 text-primary-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-stone-900">Secure Payment</h3>
-                <p className="text-sm text-stone-500">100% secure transactions</p>
+                <h3 className="font-semibold text-navy-950">Secure Payment</h3>
+                <p className="text-sm text-navy-500">100% secure transactions</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -63,8 +63,8 @@ export default function HomePage() {
                 <ShoppingBag className="h-6 w-6 text-primary-600" />
               </div>
               <div>
-                <h3 className="font-semibold text-stone-900">Quality Products</h3>
-                <p className="text-sm text-stone-500">Curated selection of top brands</p>
+                <h3 className="font-semibold text-navy-950">Quality Products</h3>
+                <p className="text-sm text-navy-500">Curated selection of top brands</p>
               </div>
             </div>
           </div>
@@ -75,8 +75,8 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-stone-900">Featured Products</h2>
-            <p className="mt-1 text-stone-500">Handpicked items just for you</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-navy-950">Featured Products</h2>
+            <p className="mt-1 text-navy-500">Handpicked items just for you</p>
           </div>
           <Link to="/products">
             <Button variant="outline" className="gap-1">

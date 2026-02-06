@@ -48,15 +48,15 @@ export default function CheckoutPage() {
   if (items.length === 0) {
     return (
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <h2 className="text-2xl font-bold text-stone-900">Your cart is empty</h2>
-        <p className="mt-2 text-stone-500">Add some items to your cart before checking out.</p>
+        <h2 className="text-2xl font-bold text-navy-950">Your cart is empty</h2>
+        <p className="mt-2 text-navy-500">Add some items to your cart before checking out.</p>
       </div>
     );
   }
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-stone-900 mb-8">Checkout</h1>
+      <h1 className="text-3xl font-bold text-navy-950 mb-8">Checkout</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Shipping Form */}
@@ -68,7 +68,7 @@ export default function CheckoutPage() {
             <CardContent>
               <form onSubmit={handleSubmit} id="checkout-form" className="space-y-4">
                 <div>
-                  <label htmlFor="fullName" className="block text-sm font-medium text-stone-700 mb-1">
+                  <label htmlFor="fullName" className="block text-sm font-medium text-navy-700 mb-1">
                     Full Name
                   </label>
                   <Input
@@ -81,7 +81,7 @@ export default function CheckoutPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="address" className="block text-sm font-medium text-stone-700 mb-1">
+                  <label htmlFor="address" className="block text-sm font-medium text-navy-700 mb-1">
                     Street Address
                   </label>
                   <Input
@@ -95,7 +95,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
-                    <label htmlFor="city" className="block text-sm font-medium text-stone-700 mb-1">
+                    <label htmlFor="city" className="block text-sm font-medium text-navy-700 mb-1">
                       City
                     </label>
                     <Input
@@ -108,7 +108,7 @@ export default function CheckoutPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="state" className="block text-sm font-medium text-stone-700 mb-1">
+                    <label htmlFor="state" className="block text-sm font-medium text-navy-700 mb-1">
                       State
                     </label>
                     <Input
@@ -121,7 +121,7 @@ export default function CheckoutPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="zipCode" className="block text-sm font-medium text-stone-700 mb-1">
+                    <label htmlFor="zipCode" className="block text-sm font-medium text-navy-700 mb-1">
                       ZIP Code
                     </label>
                     <Input
@@ -148,22 +148,22 @@ export default function CheckoutPage() {
             <CardContent className="space-y-4">
               {items.map((item) => (
                 <div key={item.id} className="flex justify-between text-sm">
-                  <span className="text-stone-600">
+                  <span className="text-navy-600">
                     {item.product.name} x {item.quantity}
                   </span>
-                  <span className="font-medium text-stone-900">
+                  <span className="font-medium text-navy-950">
                     {formatPrice(item.product.price * item.quantity)}
                   </span>
                 </div>
               ))}
-              <div className="border-t border-stone-200 pt-4">
-                <div className="flex justify-between text-sm text-stone-600">
+              <div className="border-t border-navy-100 pt-4">
+                <div className="flex justify-between text-sm text-navy-600">
                   <span>Shipping</span>
                   <span className="text-green-600">Free</span>
                 </div>
               </div>
-              <div className="border-t border-stone-200 pt-4">
-                <div className="flex justify-between font-semibold text-stone-900">
+              <div className="border-t border-navy-100 pt-4">
+                <div className="flex justify-between font-semibold text-navy-950">
                   <span>Total</span>
                   <span>{formatPrice(totalPrice)}</span>
                 </div>

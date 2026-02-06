@@ -4,26 +4,27 @@
 
 @layer base {
   :root {
-    --background: 48 100% 96%;
-    --foreground: 24 10% 10%;
+    --background: 45 100% 97%;
+    --foreground: 224 76% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 24 10% 10%;
+    --card-foreground: 224 76% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 24 10% 10%;
-    --primary: 21 90% 48%;
+    --popover-foreground: 224 76% 15%;
+    --primary: 25 95% 53%;
     --primary-foreground: 60 9% 98%;
     --secondary: 44 45% 95%;
-    --secondary-foreground: 24 10% 10%;
+    --secondary-foreground: 224 76% 15%;
     --muted: 44 45% 95%;
-    --muted-foreground: 24 6% 45%;
-    --accent: 224 76% 48%;
+    --muted-foreground: 24 5% 46%;
+    --accent: 224 76% 33%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
+    --destructive: 343 81% 53%;
     --destructive-foreground: 60 9% 98%;
-    --border: 20 6% 90%;
-    --input: 20 6% 90%;
-    --ring: 21 90% 48%;
+    --border: 224 20% 88%;
+    --input: 224 20% 88%;
+    --ring: 25 95% 53%;
     --radius: 0.5rem;
+    --surface: 45 100% 97%;
   }
 
   * {
@@ -32,6 +33,18 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .bg-surface {
+    background-color: hsl(var(--surface));
+  }
+  .gradient-hero {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 40%, #1e3a8a 100%);
+  }
+  .gradient-navy {
+    background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
   }
 }
 

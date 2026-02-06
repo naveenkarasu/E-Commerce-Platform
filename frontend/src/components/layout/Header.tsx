@@ -30,7 +30,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-stone-700 bg-stone-900/95 backdrop-blur supports-[backdrop-filter]:bg-stone-900/60">
+    <header className="sticky top-0 z-40 w-full border-b border-navy-800 bg-navy-950/95 backdrop-blur supports-[backdrop-filter]:bg-navy-950/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
           {/* Logo */}
@@ -44,7 +44,7 @@ export function Header() {
           {/* Search bar - desktop */}
           <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-lg">
             <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-300" />
               <Input
                 placeholder="Search products..."
                 value={searchQuery}
@@ -56,13 +56,13 @@ export function Header() {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/products" className="text-sm font-medium text-stone-300 hover:text-white transition-colors">
+            <Link to="/products" className="text-sm font-medium text-navy-200 hover:text-white transition-colors">
               Products
             </Link>
 
             {/* Cart */}
             <Link to="/cart" className="relative">
-              <ShoppingCart className="h-6 w-6 text-stone-300 hover:text-white transition-colors" />
+              <ShoppingCart className="h-6 w-6 text-navy-200 hover:text-white transition-colors" />
               {itemCount > 0 && (
                 <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs">
                   {itemCount > 99 ? '99+' : itemCount}
@@ -75,7 +75,7 @@ export function Header() {
               <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2 text-sm font-medium text-stone-300 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-sm font-medium text-navy-200 hover:text-white transition-colors"
                 >
                   <User className="h-5 w-5" />
                   <span>{user.username}</span>
@@ -84,11 +84,11 @@ export function Header() {
                 {userMenuOpen && (
                   <>
                     <div className="fixed inset-0 z-10" onClick={() => setUserMenuOpen(false)} />
-                    <div className="absolute right-0 top-full mt-2 z-20 w-48 rounded-md border border-stone-200 bg-white py-1 shadow-lg">
+                    <div className="absolute right-0 top-full mt-2 z-20 w-48 rounded-md border border-navy-100 bg-white py-1 shadow-lg">
                       <Link
                         to="/orders"
                         onClick={() => setUserMenuOpen(false)}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-stone-700 hover:bg-amber-50"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-navy-700hover:bg-primary-50"
                       >
                         <Package className="h-4 w-4" />
                         My Orders
@@ -97,7 +97,7 @@ export function Header() {
                         <Link
                           to="/admin"
                           onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2 px-4 py-2 text-sm text-stone-700 hover:bg-amber-50"
+                          className="flex items-center gap-2 px-4 py-2 text-sm text-navy-700hover:bg-primary-50"
                         >
                           <Shield className="h-4 w-4" />
                           Admin Panel
@@ -105,7 +105,7 @@ export function Header() {
                       )}
                       <button
                         onClick={handleLogout}
-                        className="flex w-full items-center gap-2 px-4 py-2 text-sm text-stone-700 hover:bg-amber-50"
+                        className="flex w-full items-center gap-2 px-4 py-2 text-sm text-navy-700hover:bg-primary-50"
                       >
                         <LogOut className="h-4 w-4" />
                         Logout
@@ -126,7 +126,7 @@ export function Header() {
           {/* Mobile menu button */}
           <div className="flex items-center gap-3 md:hidden">
             <Link to="/cart" className="relative">
-              <ShoppingCart className="h-6 w-6 text-stone-300" />
+              <ShoppingCart className="h-6 w-6 text-navy-200" />
               {itemCount > 0 && (
                 <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs">
                   {itemCount}
@@ -135,9 +135,9 @@ export function Header() {
             </Link>
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? (
-                <X className="h-6 w-6 text-stone-300" />
+                <X className="h-6 w-6 text-navy-200" />
               ) : (
-                <Menu className="h-6 w-6 text-stone-300" />
+                <Menu className="h-6 w-6 text-navy-200" />
               )}
             </button>
           </div>
@@ -147,7 +147,7 @@ export function Header() {
         <div className="md:hidden pb-3">
           <form onSubmit={handleSearch}>
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-300" />
               <Input
                 placeholder="Search products..."
                 value={searchQuery}
@@ -161,12 +161,12 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-stone-700 bg-stone-900">
+        <div className="md:hidden border-t border-navy-800 bg-navy-950">
           <div className="px-4 py-3 space-y-2">
             <Link
               to="/products"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 text-sm font-medium text-stone-300 hover:bg-stone-800 rounded-md"
+              className="block px-3 py-2 text-sm font-medium text-navy-200 hover:bg-navy-800 rounded-md"
             >
               Products
             </Link>
@@ -175,7 +175,7 @@ export function Header() {
                 <Link
                   to="/orders"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 text-sm font-medium text-stone-300 hover:bg-stone-800 rounded-md"
+                  className="block px-3 py-2 text-sm font-medium text-navy-200 hover:bg-navy-800 rounded-md"
                 >
                   My Orders
                 </Link>
@@ -183,7 +183,7 @@ export function Header() {
                   <Link
                     to="/admin"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block px-3 py-2 text-sm font-medium text-stone-300 hover:bg-stone-800 rounded-md"
+                    className="block px-3 py-2 text-sm font-medium text-navy-200 hover:bg-navy-800 rounded-md"
                   >
                     Admin Panel
                   </Link>
@@ -193,7 +193,7 @@ export function Header() {
                     handleLogout();
                     setMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left px-3 py-2 text-sm font-medium text-stone-300 hover:bg-stone-800 rounded-md"
+                  className="block w-full text-left px-3 py-2 text-sm font-medium text-navy-200 hover:bg-navy-800 rounded-md"
                 >
                   Logout ({user.username})
                 </button>
@@ -202,7 +202,7 @@ export function Header() {
               <Link
                 to="/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 text-sm font-medium text-primary-500 hover:bg-stone-800 rounded-md"
+                className="block px-3 py-2 text-sm font-medium text-primary-500 hover:bg-navy-800 rounded-md"
               >
                 Sign In
               </Link>
