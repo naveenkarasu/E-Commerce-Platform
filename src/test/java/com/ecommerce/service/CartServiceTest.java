@@ -8,25 +8,25 @@ import com.ecommerce.repository.CartItemRepository;
 import com.ecommerce.repository.CartRepository;
 import com.ecommerce.repository.ProductRepository;
 import com.ecommerce.repository.UserRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for CartService.
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class CartServiceTest {
 
     @Mock
@@ -48,7 +48,7 @@ public class CartServiceTest {
     private Cart testCart;
     private Product testProduct;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         testUser = new User();
         testUser.setUserId(1L);
@@ -102,11 +102,13 @@ public class CartServiceTest {
         verify(userRepository, times(1)).findByEmail("test@example.com");
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testGetCartByUserEmail_UserNotFound() {
         when(userRepository.findByEmail("notfound@example.com")).thenReturn(Optional.empty());
 
-        cartService.getCartByUserEmail("notfound@example.com");
+        assertThrows(RuntimeException.class, () -> {
+            cartService.getCartByUserEmail("notfound@example.com");
+        });
     }
 
     @Test
@@ -143,13 +145,15 @@ public class CartServiceTest {
         assertEquals(Integer.valueOf(3), existingItem.getQuantity()); // 1 + 2
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testAddToCart_InsufficientStock() {
         when(userRepository.findByEmail("test@example.com")).thenReturn(Optional.of(testUser));
         when(cartRepository.findByUser(testUser)).thenReturn(Optional.of(testCart));
         when(productRepository.findById(1L)).thenReturn(Optional.of(testProduct));
 
-        cartService.addToCart("test@example.com", 1L, 150); // More than stock
+        assertThrows(RuntimeException.class, () -> {
+            cartService.addToCart("test@example.com", 1L, 150); // More than stock
+        });
     }
 
     @Test

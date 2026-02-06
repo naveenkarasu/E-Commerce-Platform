@@ -1,6 +1,6 @@
 package com.ecommerce.dto;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * DTO for checkout/order placement requests.

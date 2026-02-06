@@ -1,15 +1,15 @@
 package com.ecommerce.controller;
 
+import com.ecommerce.config.SecurityConfig;
 import com.ecommerce.dto.UserRegistrationDto;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -22,8 +22,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests for AuthController.
  */
-@RunWith(SpringRunner.class)
 @WebMvcTest(AuthController.class)
+@Import(SecurityConfig.class)
 public class AuthControllerTest {
 
     @Autowired

@@ -20,6 +20,7 @@ build/
 nbbuild/
 dist/
 nbdist/
+.vscode/
 
 # OS
 .DS_Store
@@ -30,3 +31,11 @@ Thumbs.db
 
 # Spring Boot
 application-local.properties
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# Docker
+*.env

@@ -4,26 +4,26 @@ import com.ecommerce.dto.UserRegistrationDto;
 import com.ecommerce.model.User;
 import com.ecommerce.repository.CartRepository;
 import com.ecommerce.repository.UserRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 /**
  * Unit tests for UserService.
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 
     @Mock
@@ -40,7 +40,7 @@ public class UserServiceTest {
 
     private User testUser;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         testUser = new User();
         testUser.setUserId(1L);
@@ -61,11 +61,13 @@ public class UserServiceTest {
         verify(userRepository, times(1)).findByEmail("test@example.com");
     }
 
-    @Test(expected = UsernameNotFoundException.class)
+    @Test
     public void testLoadUserByUsername_NotFound() {
         when(userRepository.findByEmail("notfound@example.com")).thenReturn(Optional.empty());
 
-        userService.loadUserByUsername("notfound@example.com");
+        assertThrows(UsernameNotFoundException.class, () -> {
+            userService.loadUserByUsername("notfound@example.com");
+        });
     }
 
     @Test
@@ -90,7 +92,7 @@ public class UserServiceTest {
         verify(cartRepository, times(1)).save(any());
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testRegisterUser_EmailExists() {
         UserRegistrationDto registrationDto = new UserRegistrationDto();
         registrationDto.setEmail("existing@example.com");
@@ -99,10 +101,12 @@ public class UserServiceTest {
 
         when(userRepository.existsByEmail("existing@example.com")).thenReturn(true);
 
-        userService.registerUser(registrationDto);
+        assertThrows(RuntimeException.class, () -> {
+            userService.registerUser(registrationDto);
+        });
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testRegisterUser_PasswordMismatch() {
         UserRegistrationDto registrationDto = new UserRegistrationDto();
         registrationDto.setEmail("new@example.com");
@@ -111,7 +115,9 @@ public class UserServiceTest {
 
         when(userRepository.existsByEmail("new@example.com")).thenReturn(false);
 
-        userService.registerUser(registrationDto);
+        assertThrows(RuntimeException.class, () -> {
+            userService.registerUser(registrationDto);
+        });
     }
 
     @Test
@@ -182,7 +188,7 @@ public class UserServiceTest {
         verify(userRepository, times(1)).save(any(User.class));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testUpdateProfile_EmailTaken() {
         User anotherUser = new User();
         anotherUser.setUserId(1L);
@@ -191,7 +197,9 @@ public class UserServiceTest {
         when(userRepository.findById(1L)).thenReturn(Optional.of(anotherUser));
         when(userRepository.existsByEmail("taken@example.com")).thenReturn(true);
 
-        userService.updateProfile(1L, "Name", "taken@example.com");
+        assertThrows(RuntimeException.class, () -> {
+            userService.updateProfile(1L, "Name", "taken@example.com");
+        });
     }
 
     @Test
@@ -206,12 +214,14 @@ public class UserServiceTest {
         verify(userRepository, times(1)).save(any(User.class));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testChangePassword_WrongCurrentPassword() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(testUser));
         when(passwordEncoder.matches("wrongPassword", "encodedPassword")).thenReturn(false);
 
-        userService.changePassword(1L, "wrongPassword", "newPassword");
+        assertThrows(RuntimeException.class, () -> {
+            userService.changePassword(1L, "wrongPassword", "newPassword");
+        });
     }
 
     @Test
@@ -224,10 +234,12 @@ public class UserServiceTest {
         assertEquals("test@example.com", result.getEmail());
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testGetCurrentUser_NotFound() {
         when(userRepository.findByEmail("notfound@example.com")).thenReturn(Optional.empty());
 
-        userService.getCurrentUser("notfound@example.com");
+        assertThrows(RuntimeException.class, () -> {
+            userService.getCurrentUser("notfound@example.com");
+        });
     }
 }

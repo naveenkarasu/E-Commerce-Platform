@@ -3,15 +3,13 @@ package com.ecommerce.controller;
 import com.ecommerce.model.Product;
 import com.ecommerce.service.ProductService;
 import com.ecommerce.service.UserService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
@@ -27,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests for ProductController.
  */
-@RunWith(SpringRunner.class)
 @WebMvcTest(ProductController.class)
 public class ProductControllerTest {
 
