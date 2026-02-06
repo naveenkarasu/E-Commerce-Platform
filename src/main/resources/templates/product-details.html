@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} + ' - E-Commerce Platform'">Product Details - E-Commerce Platform</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">
+                <i class="fas fa-shopping-cart"></i> E-Commerce
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/products}">Products</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 mr-3" th:action="@{/search}" method="get">
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search products...">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/cart}">
+                            <i class="fas fa-shopping-cart"></i> Cart
+                        </a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAnonymous()">
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAnonymous()">
+                        <a class="nav-link" th:href="@{/register}">Register</a>
+                    </li>
+                    <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" th:href="@{/orders}">My Orders</a>
+                            <div class="dropdown-divider"></div>
+                            <form th:action="@{/logout}" method="post" class="px-2">
+                                <button type="submit" class="dropdown-item">Logout</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="bg-light">
+        <div class="container">
+            <ol class="breadcrumb mb-0 py-2">
+                <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/products}">Products</a></li>
+                <li class="breadcrumb-item" th:if="${product.category != null}">
+                    <a th:href="@{/category/{cat}(cat=${product.category})}" th:text="${product.category}">Category</a>
+                </li>
+                <li class="breadcrumb-item active" th:text="${product.name}">Product Name</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-4">
+        <!-- Alert Messages -->
+        <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show">
+            <span th:text="${successMessage}"></span>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show">
+            <span th:text="${errorMessage}"></span>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+
+        <!-- Product Details -->
+        <div class="row">
+            <!-- Product Image -->
+            <div class="col-md-6 mb-4">
+                <img th:src="${product.imageUrl != null ? product.imageUrl : 'https://via.placeholder.com/500x400?text=No+Image'}"
+                     class="img-fluid rounded shadow" th:alt="${product.name}">
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-md-6">
+                <span class="badge badge-secondary mb-2" th:text="${product.category}">Category</span>
+                <h1 th:text="${product.name}">Product Name</h1>
+
+                <div class="mb-3">
+                    <span class="h2 text-primary" th:text="${#numbers.formatCurrency(product.price)}">$0.00</span>
+                </div>
+
+                <div class="mb-3">
+                    <span class="badge badge-lg" th:class="${product.inStock} ? 'badge-success' : 'badge-danger'">
+                        <i th:class="${product.inStock} ? 'fas fa-check-circle' : 'fas fa-times-circle'"></i>
+                        <span th:text="${product.inStock} ? 'In Stock (' + ${product.stockQuantity} + ' available)' : 'Out of Stock'">Stock Status</span>
+                    </span>
+                </div>
+
+                <hr>
+
+                <h5>Description</h5>
+                <p class="text-muted" th:text="${product.description}">Product description goes here.</p>
+
+                <hr>
+
+                <!-- Add to Cart Form -->
+                <form th:action="@{/cart/add}" method="post" th:if="${product.inStock}" sec:authorize="isAuthenticated()">
+                    <input type="hidden" name="productId" th:value="${product.productId}">
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <div class="input-group" style="max-width: 150px;">
+                            <div class="input-group-prepend">
+                                <button type="button" class="btn btn-outline-secondary" onclick="decrementQty()">-</button>
+                            </div>
+                            <input type="number" id="quantity" name="quantity" class="form-control text-center"
+                                   value="1" min="1" th:max="${product.stockQuantity}">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-outline-secondary" onclick="incrementQty()">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </form>
+
+                <!-- Login prompt for guests -->
+                <div sec:authorize="isAnonymous()">
+                    <p class="text-muted">Please login to add items to your cart.</p>
+                    <a th:href="@{/login}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-sign-in-alt"></i> Login to Buy
+                    </a>
+                    <a th:href="@{/register}" class="btn btn-outline-primary btn-lg ml-2">Register</a>
+                </div>
+
+                <!-- Out of stock message -->
+                <div th:if="${!product.inStock}" class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    This product is currently out of stock. Please check back later.
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products -->
+        <section class="mt-5" th:if="${relatedProducts != null and !relatedProducts.isEmpty()}">
+            <h3>Related Products</h3>
+            <hr>
+            <div class="row">
+                <div class="col-md-3 col-6 mb-4" th:each="related : ${relatedProducts}">
+                    <div class="card h-100 product-card">
+                        <a th:href="@{/products/{id}(id=${related.productId})}">
+                            <img th:src="${related.imageUrl != null ? related.imageUrl : 'https://via.placeholder.com/300x200?text=No+Image'}"
+                                 class="card-img-top" th:alt="${related.name}">
+                        </a>
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <a th:href="@{/products/{id}(id=${related.productId})}"
+                                   th:text="${related.name}" class="text-dark">Product Name</a>
+                            </h6>
+                            <p class="card-text text-primary font-weight-bold" th:text="${#numbers.formatCurrency(related.price)}">$0.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <small>&copy; 2019 E-Commerce Platform. All rights reserved.</small>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function incrementQty() {
+            var qtyInput = document.getElementById('quantity');
+            var max = parseInt(qtyInput.getAttribute('max'));
+            var current = parseInt(qtyInput.value);
+            if (current < max) {
+                qtyInput.value = current + 1;
+            }
+        }
+
+        function decrementQty() {
+            var qtyInput = document.getElementById('quantity');
+            var current = parseInt(qtyInput.value);
+            if (current > 1) {
+                qtyInput.value = current - 1;
+            }
+        }
+    </script>
+</body>
+</html>

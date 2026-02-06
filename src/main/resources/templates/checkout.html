@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} + ' - E-Commerce Platform'">Checkout - E-Commerce Platform</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">
+                <i class="fas fa-shopping-cart"></i> E-Commerce
+            </a>
+            <div class="navbar-nav ml-auto">
+                <span class="nav-link text-light">
+                    <i class="fas fa-lock"></i> Secure Checkout
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="bg-light">
+        <div class="container">
+            <ol class="breadcrumb mb-0 py-2">
+                <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/cart}">Cart</a></li>
+                <li class="breadcrumb-item active">Checkout</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-4">
+        <h1 class="mb-4"><i class="fas fa-credit-card"></i> Checkout</h1>
+
+        <!-- Alert Messages -->
+        <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show">
+            <span th:text="${errorMessage}"></span>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+
+        <form th:action="@{/checkout}" th:object="${checkoutDto}" method="post">
+            <div class="row">
+                <!-- Shipping & Payment Form -->
+                <div class="col-lg-8">
+                    <!-- Shipping Address -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Shipping Address</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="shippingAddress">Street Address *</label>
+                                    <input type="text" class="form-control" id="shippingAddress"
+                                           th:field="*{shippingAddress}" placeholder="123 Main Street"
+                                           th:classappend="${#fields.hasErrors('shippingAddress')} ? 'is-invalid' : ''">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('shippingAddress')}"
+                                         th:errors="*{shippingAddress}">Error</div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" id="city"
+                                           th:field="*{city}" placeholder="City">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="state">State</label>
+                                    <input type="text" class="form-control" id="state"
+                                           th:field="*{state}" placeholder="State">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="zipCode">Zip Code</label>
+                                    <input type="text" class="form-control" id="zipCode"
+                                           th:field="*{zipCode}" placeholder="12345">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="country">Country</label>
+                                    <select class="form-control" id="country" th:field="*{country}">
+                                        <option value="USA" selected>United States</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="Australia">Australia</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phoneNumber"
+                                           th:field="*{phoneNumber}" placeholder="(123) 456-7890">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-credit-card"></i> Payment Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i>
+                                <strong>Demo Mode:</strong> This is a simulated payment. No actual charges will be made.
+                            </div>
+                            <div class="form-group">
+                                <label>Payment Method</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod"
+                                           id="creditCard" value="CREDIT_CARD" checked>
+                                    <label class="form-check-label" for="creditCard">
+                                        <i class="fab fa-cc-visa"></i>
+                                        <i class="fab fa-cc-mastercard"></i>
+                                        <i class="fab fa-cc-amex"></i>
+                                        Credit/Debit Card
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="cardNumber">Card Number</label>
+                                    <input type="text" class="form-control" id="cardNumber"
+                                           th:field="*{cardNumber}" placeholder="1234 5678 9012 3456" maxlength="19">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="cardExpiry">Expiry Date</label>
+                                    <input type="text" class="form-control" id="cardExpiry"
+                                           th:field="*{cardExpiry}" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cardCvv">CVV</label>
+                                    <input type="text" class="form-control" id="cardCvv"
+                                           th:field="*{cardCvv}" placeholder="123" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="col-lg-4">
+                    <div class="card sticky-top" style="top: 20px;">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-receipt"></i> Order Summary</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="order-items" style="max-height: 300px; overflow-y: auto;">
+                                <div class="d-flex mb-3" th:each="item : ${cartItems}">
+                                    <img th:src="${item.product.imageUrl != null ? item.product.imageUrl : 'https://via.placeholder.com/60x60?text=No+Image'}"
+                                         class="mr-3" style="width: 60px; height: 60px; object-fit: cover;" th:alt="${item.product.name}">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0" th:text="${item.product.name}">Product</h6>
+                                        <small class="text-muted">Qty: <span th:text="${item.quantity}">1</span></small>
+                                    </div>
+                                    <span class="font-weight-bold" th:text="${#numbers.formatCurrency(item.subtotal)}">$0.00</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <table class="table table-sm table-borderless mb-0">
+                                <tr>
+                                    <td>Subtotal:</td>
+                                    <td class="text-right" th:text="${#numbers.formatCurrency(cartTotal)}">$0.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping:</td>
+                                    <td class="text-right">
+                                        <span th:if="${cartTotal.compareTo(new java.math.BigDecimal('50')) >= 0}" class="text-success">FREE</span>
+                                        <span th:unless="${cartTotal.compareTo(new java.math.BigDecimal('50')) >= 0}">$5.99</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tax:</td>
+                                    <td class="text-right" th:text="${#numbers.formatCurrency(cartTotal.multiply(new java.math.BigDecimal('0.08')))}">$0.00</td>
+                                </tr>
+                                <tr class="border-top">
+                                    <th>Total:</th>
+                                    <th class="text-right h5 text-primary"
+                                        th:text="${#numbers.formatCurrency(cartTotal.add(cartTotal.multiply(new java.math.BigDecimal('0.08'))).add(cartTotal.compareTo(new java.math.BigDecimal('50')) >= 0 ? new java.math.BigDecimal('0') : new java.math.BigDecimal('5.99')))}">$0.00</th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success btn-lg btn-block">
+                                <i class="fas fa-lock"></i> Place Order
+                            </button>
+                            <small class="d-block text-center text-muted mt-2">
+                                <i class="fas fa-shield-alt"></i> Your payment is secure and encrypted
+                            </small>
+                            <a th:href="@{/cart}" class="btn btn-outline-secondary btn-block mt-2">
+                                <i class="fas fa-arrow-left"></i> Back to Cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <small>&copy; 2019 E-Commerce Platform. All rights reserved.</small>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        // Format card number with spaces
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            var value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            var formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+
+        // Format expiry date
+        document.getElementById('cardExpiry').addEventListener('input', function(e) {
+            var value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
