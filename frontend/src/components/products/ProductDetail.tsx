@@ -37,7 +37,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
   return (
     <div>
-      <Link to="/products" className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-6">
+      <Link to="/products" className="inline-flex items-center gap-1 text-sm text-stone-500 hover:text-stone-700 mb-6">
         <ArrowLeft className="h-4 w-4" />
         Back to Products
       </Link>
@@ -53,29 +53,29 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <Badge variant="destructive">Out of Stock</Badge>
             )}
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
+          <h1 className="text-3xl font-bold text-stone-900">{product.name}</h1>
         </div>
 
         <div className="text-3xl font-bold text-primary-600">
           {formatPrice(product.price)}
         </div>
 
-        <p className="text-gray-600 text-lg leading-relaxed">
+        <p className="text-stone-600 text-lg leading-relaxed">
           {product.description}
         </p>
 
-        <div className="flex items-center gap-2 text-sm text-gray-500">
+        <div className="flex items-center gap-2 text-sm text-stone-500">
           <Package className="h-4 w-4" />
           <span>{product.stockQuantity} units in stock</span>
         </div>
 
         {/* Quantity selector and Add to Cart */}
         <div className="flex items-center gap-4 pt-4">
-          <div className="flex items-center border border-gray-300 rounded-md">
+          <div className="flex items-center border border-stone-300 rounded-md">
             <button
               onClick={decrementQty}
               disabled={quantity <= 1}
-              className="p-2 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 hover:bg-amber-50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Minus className="h-4 w-4" />
             </button>
@@ -85,7 +85,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <button
               onClick={incrementQty}
               disabled={quantity >= product.stockQuantity}
-              className="p-2 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 hover:bg-amber-50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Plus className="h-4 w-4" />
             </button>
@@ -102,7 +102,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </Button>
         </div>
 
-        <div className="text-sm text-gray-400 pt-2">
+        <div className="text-sm text-stone-400 pt-2">
           Subtotal: {formatPrice(product.price * quantity)}
         </div>
       </div>

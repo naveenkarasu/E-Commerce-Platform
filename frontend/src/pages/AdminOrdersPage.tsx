@@ -19,8 +19,8 @@ export default function AdminOrdersPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Orders</h1>
-        <p className="mt-1 text-gray-500">Manage customer orders</p>
+        <h1 className="text-3xl font-bold text-stone-900">Orders</h1>
+        <p className="mt-1 text-stone-500">Manage customer orders</p>
       </div>
 
       {isLoading ? (
@@ -38,36 +38,36 @@ export default function AdminOrdersPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 font-medium text-gray-500">Order ID</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-500">Date</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-500">Items</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-500">Total</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-500">Status</th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-500">Shipping</th>
+                  <tr className="border-b border-stone-200">
+                    <th className="text-left py-3 px-4 font-medium text-stone-500">Order ID</th>
+                    <th className="text-left py-3 px-4 font-medium text-stone-500">Date</th>
+                    <th className="text-left py-3 px-4 font-medium text-stone-500">Items</th>
+                    <th className="text-left py-3 px-4 font-medium text-stone-500">Total</th>
+                    <th className="text-left py-3 px-4 font-medium text-stone-500">Status</th>
+                    <th className="text-left py-3 px-4 font-medium text-stone-500">Shipping</th>
                   </tr>
                 </thead>
                 <tbody>
                   {orders?.map((order) => (
-                    <tr key={order.id} className="border-b border-gray-100 hover:bg-gray-50">
-                      <td className="py-3 px-4 font-medium text-gray-900">#{order.id}</td>
-                      <td className="py-3 px-4 text-gray-600">
+                    <tr key={order.id} className="border-b border-stone-200 hover:bg-amber-50">
+                      <td className="py-3 px-4 font-medium text-stone-900">#{order.id}</td>
+                      <td className="py-3 px-4 text-stone-600">
                         {new Date(order.createdAt).toLocaleDateString('en-US', {
                           month: 'short',
                           day: 'numeric',
                           year: 'numeric',
                         })}
                       </td>
-                      <td className="py-3 px-4 text-gray-600">
+                      <td className="py-3 px-4 text-stone-600">
                         {order.items.length} {order.items.length === 1 ? 'item' : 'items'}
                       </td>
-                      <td className="py-3 px-4 font-medium text-gray-900">
+                      <td className="py-3 px-4 font-medium text-stone-900">
                         {formatPrice(order.totalPrice)}
                       </td>
                       <td className="py-3 px-4">
                         <Badge variant={statusVariants[order.status]}>{order.status}</Badge>
                       </td>
-                      <td className="py-3 px-4 text-gray-600 max-w-xs truncate">
+                      <td className="py-3 px-4 text-stone-600 max-w-xs truncate">
                         {order.shippingAddress}
                       </td>
                     </tr>

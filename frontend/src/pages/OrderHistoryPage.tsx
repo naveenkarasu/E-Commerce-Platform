@@ -21,7 +21,7 @@ export default function OrderHistoryPage() {
   if (isLoading) {
     return (
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">My Orders</h1>
+        <h1 className="text-3xl font-bold text-stone-900 mb-8">My Orders</h1>
         <div className="space-y-4">
           {Array.from({ length: 3 }).map((_, i) => (
             <Skeleton key={i} className="h-32 w-full rounded-lg" />
@@ -35,11 +35,11 @@ export default function OrderHistoryPage() {
     return (
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col items-center justify-center text-center">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gray-100 mb-6">
-            <Package className="h-10 w-10 text-gray-400" />
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-stone-100 mb-6">
+            <Package className="h-10 w-10 text-stone-400" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900">No orders yet</h2>
-          <p className="mt-2 text-gray-500">When you place an order, it will appear here.</p>
+          <h2 className="text-2xl font-bold text-stone-900">No orders yet</h2>
+          <p className="mt-2 text-stone-500">When you place an order, it will appear here.</p>
         </div>
       </div>
     );
@@ -47,7 +47,7 @@ export default function OrderHistoryPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">My Orders</h1>
+      <h1 className="text-3xl font-bold text-stone-900 mb-8">My Orders</h1>
 
       <div className="space-y-4">
         {orders.map((order) => (
@@ -57,22 +57,22 @@ export default function OrderHistoryPage() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <div className="flex items-center gap-3 mb-1">
-                      <h3 className="font-semibold text-gray-900">Order #{order.id}</h3>
+                      <h3 className="font-semibold text-stone-900">Order #{order.id}</h3>
                       <Badge variant={statusVariants[order.status]}>{order.status}</Badge>
                     </div>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-stone-500">
                       {new Date(order.createdAt).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',
                       })}
                     </p>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <p className="text-sm text-stone-500 mt-1">
                       {order.items.length} {order.items.length === 1 ? 'item' : 'items'}
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg font-semibold text-gray-900">
+                    <p className="text-lg font-semibold text-stone-900">
                       {formatPrice(order.totalPrice)}
                     </p>
                   </div>

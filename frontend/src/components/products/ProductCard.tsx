@@ -47,7 +47,7 @@ export function ProductCard({ product }: ProductCardProps) {
             {categoryIcons[product.category] || '📦'}
           </span>
           <div className="absolute top-3 left-3">
-            <Badge variant="secondary" className="bg-white/90 text-gray-700">
+            <Badge variant="secondary" className="bg-white/90 text-stone-700">
               {product.category}
             </Badge>
           </div>
@@ -64,13 +64,13 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <CardContent className="p-4">
-          <h3 className="font-semibold text-gray-900 group-hover:text-primary-500 transition-colors line-clamp-1">
+          <h3 className="font-semibold text-stone-900 group-hover:text-primary-500 transition-colors line-clamp-1">
             {product.name}
           </h3>
-          <p className="mt-1 text-sm text-gray-500 line-clamp-2">{product.description}</p>
+          <p className="mt-1 text-sm text-stone-500 line-clamp-2">{product.description}</p>
 
           <div className="mt-3 flex items-center justify-between">
-            <span className="text-lg font-bold text-gray-900">{formatPrice(product.price)}</span>
+            <span className="text-lg font-bold text-stone-900">{formatPrice(product.price)}</span>
             <Button
               size="sm"
               onClick={handleAddToCart}
@@ -82,7 +82,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </Button>
           </div>
 
-          <div className="mt-2 flex items-center gap-1 text-xs text-gray-400">
+          <div className="mt-2 flex items-center gap-1 text-xs text-stone-400">
             <Package className="h-3 w-3" />
             <span>{product.stockQuantity} in stock</span>
           </div>

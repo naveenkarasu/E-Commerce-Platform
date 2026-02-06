@@ -47,7 +47,7 @@ function DialogTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingEl
 }
 
 function DialogDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={cn('text-sm text-gray-500', className)} {...props} />;
+  return <p className={cn('text-sm text-stone-500', className)} {...props} />;
 }
 
 export { Dialog, DialogHeader, DialogTitle, DialogDescription };

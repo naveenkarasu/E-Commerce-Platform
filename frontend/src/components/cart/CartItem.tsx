@@ -21,7 +21,7 @@ export function CartItemRow({ item }: CartItemProps) {
   const gradient = categoryGradients[item.product.category] || 'from-gray-400 to-gray-600';
 
   return (
-    <div className="flex items-center gap-4 py-4 border-b border-gray-100 last:border-0">
+    <div className="flex items-center gap-4 py-4 border-b border-stone-200 last:border-0">
       {/* Product image placeholder */}
       <div className={`w-20 h-20 rounded-lg bg-gradient-to-br ${gradient} flex items-center justify-center shrink-0`}>
         <span className="text-2xl">
@@ -33,19 +33,19 @@ export function CartItemRow({ item }: CartItemProps) {
 
       {/* Details */}
       <div className="flex-1 min-w-0">
-        <h3 className="font-medium text-gray-900 truncate">{item.product.name}</h3>
-        <p className="text-sm text-gray-500">{item.product.category}</p>
-        <p className="text-sm font-semibold text-gray-900 mt-1">
+        <h3 className="font-medium text-stone-900 truncate">{item.product.name}</h3>
+        <p className="text-sm text-stone-500">{item.product.category}</p>
+        <p className="text-sm font-semibold text-stone-900 mt-1">
           {formatPrice(item.product.price)}
         </p>
       </div>
 
       {/* Quantity controls */}
       <div className="flex items-center gap-2">
-        <div className="flex items-center border border-gray-300 rounded-md">
+        <div className="flex items-center border border-stone-300 rounded-md">
           <button
             onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-            className="p-1.5 hover:bg-gray-50"
+            className="p-1.5 hover:bg-amber-50"
           >
             <Minus className="h-3 w-3" />
           </button>
@@ -53,7 +53,7 @@ export function CartItemRow({ item }: CartItemProps) {
           <button
             onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
             disabled={item.quantity >= item.product.stockQuantity}
-            className="p-1.5 hover:bg-gray-50 disabled:opacity-50"
+            className="p-1.5 hover:bg-amber-50 disabled:opacity-50"
           >
             <Plus className="h-3 w-3" />
           </button>
@@ -71,7 +71,7 @@ export function CartItemRow({ item }: CartItemProps) {
 
       {/* Item total */}
       <div className="text-right shrink-0 w-24">
-        <p className="font-semibold text-gray-900">
+        <p className="font-semibold text-stone-900">
           {formatPrice(item.product.price * item.quantity)}
         </p>
       </div>

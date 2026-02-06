@@ -21,8 +21,8 @@ export default function AdminPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-        <p className="mt-1 text-gray-500">Overview of your store</p>
+        <h1 className="text-3xl font-bold text-stone-900">Admin Dashboard</h1>
+        <p className="mt-1 text-stone-500">Overview of your store</p>
       </div>
 
       {/* Stats Grid */}
@@ -37,8 +37,8 @@ export default function AdminPage() {
                   <Package className="h-6 w-6 text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Total Products</p>
-                  <p className="text-2xl font-bold text-gray-900">{totalProducts}</p>
+                  <p className="text-sm text-stone-500">Total Products</p>
+                  <p className="text-2xl font-bold text-stone-900">{totalProducts}</p>
                 </div>
               </div>
             )}
@@ -55,8 +55,8 @@ export default function AdminPage() {
                   <ShoppingBag className="h-6 w-6 text-green-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Total Orders</p>
-                  <p className="text-2xl font-bold text-gray-900">{totalOrders}</p>
+                  <p className="text-sm text-stone-500">Total Orders</p>
+                  <p className="text-2xl font-bold text-stone-900">{totalOrders}</p>
                 </div>
               </div>
             )}
@@ -73,8 +73,8 @@ export default function AdminPage() {
                   <DollarSign className="h-6 w-6 text-primary-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Total Revenue</p>
-                  <p className="text-2xl font-bold text-gray-900">{formatPrice(totalRevenue)}</p>
+                  <p className="text-sm text-stone-500">Total Revenue</p>
+                  <p className="text-2xl font-bold text-stone-900">{formatPrice(totalRevenue)}</p>
                 </div>
               </div>
             )}
@@ -91,8 +91,8 @@ export default function AdminPage() {
                   <TrendingUp className="h-6 w-6 text-yellow-600" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Pending Orders</p>
-                  <p className="text-2xl font-bold text-gray-900">{pendingOrders}</p>
+                  <p className="text-sm text-stone-500">Pending Orders</p>
+                  <p className="text-2xl font-bold text-stone-900">{pendingOrders}</p>
                 </div>
               </div>
             )}
@@ -107,7 +107,7 @@ export default function AdminPage() {
             <CardTitle className="text-lg">Product Management</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-stone-500 mb-4">
               Manage your product catalog. Add, edit, or remove products.
             </p>
             <Link to="/admin/products">
@@ -121,7 +121,7 @@ export default function AdminPage() {
             <CardTitle className="text-lg">Order Management</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-stone-500 mb-4">
               View and manage customer orders. Update order statuses.
             </p>
             <Link to="/admin/orders">

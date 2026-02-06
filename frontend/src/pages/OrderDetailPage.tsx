@@ -35,21 +35,21 @@ export default function OrderDetailPage() {
   if (error || !order) {
     return (
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <h2 className="text-2xl font-bold text-gray-900">Order not found</h2>
-        <p className="mt-2 text-gray-500">The order you are looking for does not exist.</p>
+        <h2 className="text-2xl font-bold text-stone-900">Order not found</h2>
+        <p className="mt-2 text-stone-500">The order you are looking for does not exist.</p>
       </div>
     );
   }
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-      <Link to="/orders" className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 mb-6">
+      <Link to="/orders" className="inline-flex items-center gap-1 text-sm text-stone-500 hover:text-stone-700 mb-6">
         <ArrowLeft className="h-4 w-4" />
         Back to Orders
       </Link>
 
       <div className="flex items-center gap-4 mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Order #{order.id}</h1>
+        <h1 className="text-3xl font-bold text-stone-900">Order #{order.id}</h1>
         <Badge variant={statusVariants[order.status]}>{order.status}</Badge>
       </div>
 
@@ -65,15 +65,15 @@ export default function OrderDetailPage() {
                 {order.items.map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
+                    className="flex items-center justify-between py-3 border-b border-stone-200 last:border-0"
                   >
                     <div>
-                      <p className="font-medium text-gray-900">{item.productName}</p>
-                      <p className="text-sm text-gray-500">
+                      <p className="font-medium text-stone-900">{item.productName}</p>
+                      <p className="text-sm text-stone-500">
                         Qty: {item.quantity} x {formatPrice(item.price)}
                       </p>
                     </div>
-                    <p className="font-semibold text-gray-900">
+                    <p className="font-semibold text-stone-900">
                       {formatPrice(item.price * item.quantity)}
                     </p>
                   </div>
@@ -91,15 +91,15 @@ export default function OrderDetailPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Subtotal</span>
+                <span className="text-stone-600">Subtotal</span>
                 <span className="font-medium">{formatPrice(order.totalPrice)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Shipping</span>
+                <span className="text-stone-600">Shipping</span>
                 <span className="text-green-600">Free</span>
               </div>
-              <div className="border-t border-gray-200 pt-3">
-                <div className="flex justify-between font-semibold text-gray-900">
+              <div className="border-t border-stone-200 pt-3">
+                <div className="flex justify-between font-semibold text-stone-900">
                   <span>Total</span>
                   <span>{formatPrice(order.totalPrice)}</span>
                 </div>
@@ -112,7 +112,7 @@ export default function OrderDetailPage() {
               <CardTitle className="text-lg">Shipping Address</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-gray-600">{order.shippingAddress}</p>
+              <p className="text-sm text-stone-600">{order.shippingAddress}</p>
             </CardContent>
           </Card>
 
@@ -121,7 +121,7 @@ export default function OrderDetailPage() {
               <CardTitle className="text-lg">Order Date</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-stone-600">
                 {new Date(order.createdAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',

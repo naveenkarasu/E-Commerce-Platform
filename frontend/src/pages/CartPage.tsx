@@ -13,11 +13,11 @@ export default function CartPage() {
     return (
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col items-center justify-center text-center">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gray-100 mb-6">
-            <ShoppingCart className="h-10 w-10 text-gray-400" />
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-stone-100 mb-6">
+            <ShoppingCart className="h-10 w-10 text-stone-400" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900">Your cart is empty</h2>
-          <p className="mt-2 text-gray-500 max-w-md">
+          <h2 className="text-2xl font-bold text-stone-900">Your cart is empty</h2>
+          <p className="mt-2 text-stone-500 max-w-md">
             Looks like you have not added any items to your cart yet. Browse our products and find something you love.
           </p>
           <Link to="/products" className="mt-6">
@@ -30,7 +30,7 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
+      <h1 className="text-3xl font-bold text-stone-900 mb-8">Shopping Cart</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">

@@ -29,8 +29,8 @@ export default function ProductDetailPage() {
   if (error || !product) {
     return (
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <h2 className="text-2xl font-bold text-gray-900">Product not found</h2>
-        <p className="mt-2 text-gray-500">The product you are looking for does not exist.</p>
+        <h2 className="text-2xl font-bold text-stone-900">Product not found</h2>
+        <p className="mt-2 text-stone-500">The product you are looking for does not exist.</p>
       </div>
     );
   }

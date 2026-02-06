@@ -86,7 +86,7 @@ function LoadingFallback() {
 
 export function ProductViewer3D({ product }: ProductViewer3DProps) {
   return (
-    <div className="w-full aspect-square rounded-xl overflow-hidden bg-gradient-to-b from-gray-50 to-gray-100 border border-gray-200">
+    <div className="w-full aspect-square rounded-xl overflow-hidden bg-gradient-to-b from-stone-50 to-stone-100 border border-stone-200">
       <Canvas
         shadows
         camera={{ position: [3, 2, 3], fov: 45 }}

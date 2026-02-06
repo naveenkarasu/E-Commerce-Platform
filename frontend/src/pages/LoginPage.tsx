@@ -56,7 +56,7 @@ export default function LoginPage() {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="username" className="block text-sm font-medium text-stone-700 mb-1">
                 Username
               </label>
               <Input
@@ -69,7 +69,7 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-stone-700 mb-1">
                 Password
               </label>
               <Input
@@ -89,14 +89,14 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-gray-500">
+          <div className="mt-6 text-center text-sm text-stone-500">
             Don&apos;t have an account?{' '}
             <Link to="/register" className="text-primary-500 font-medium hover:text-primary-600">
               Sign up
             </Link>
           </div>
 
-          <div className="mt-4 rounded-md bg-gray-50 p-3 text-xs text-gray-500">
+          <div className="mt-4 rounded-md bg-amber-50 p-3 text-xs text-stone-500">
             <p className="font-medium mb-1">Demo Credentials:</p>
             <p>User: user1 / password123</p>
             <p>Admin: admin / admin123</p>

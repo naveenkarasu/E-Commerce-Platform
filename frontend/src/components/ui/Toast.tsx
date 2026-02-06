@@ -32,9 +32,9 @@ function Toast({ toast, onRemove }: ToastProps) {
       )}
     >
       {icons[toast.type]}
-      <p className="text-sm font-medium text-gray-900">{toast.message}</p>
+      <p className="text-sm font-medium text-stone-900">{toast.message}</p>
       <button onClick={() => onRemove(toast.id)} className="ml-auto">
-        <X className="h-4 w-4 text-gray-400 hover:text-gray-600" />
+        <X className="h-4 w-4 text-stone-400 hover:text-stone-600" />
       </button>
     </div>
   );

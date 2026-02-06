@@ -19,16 +19,16 @@ export function CartSummary() {
         <CardTitle className="text-lg">Order Summary</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex justify-between text-sm text-gray-600">
+        <div className="flex justify-between text-sm text-stone-600">
           <span>Items ({itemCount})</span>
           <span>{formatPrice(totalPrice)}</span>
         </div>
-        <div className="flex justify-between text-sm text-gray-600">
+        <div className="flex justify-between text-sm text-stone-600">
           <span>Shipping</span>
           <span className="text-green-600">Free</span>
         </div>
-        <div className="border-t border-gray-200 pt-4">
-          <div className="flex justify-between font-semibold text-gray-900">
+        <div className="border-t border-stone-200 pt-4">
+          <div className="flex justify-between font-semibold text-stone-900">
             <span>Total</span>
             <span>{formatPrice(totalPrice)}</span>
           </div>
